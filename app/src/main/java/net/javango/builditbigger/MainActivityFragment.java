@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package net.javango.builditbigger;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
