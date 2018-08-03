@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">jokeActivity</string>
-    <string name="joke_label">Joke of the day:</string>
+    <string name="joke_label">Joke of the Day</string>
 </resources>

@@ -19,6 +19,7 @@ public class JokeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.joke_label);
         setContentView(R.layout.activity_joke);
         String joke = getIntent().getExtras().getString(ARG_JOKE);
         TextView jokeView = findViewById(R.id.text_joke);
