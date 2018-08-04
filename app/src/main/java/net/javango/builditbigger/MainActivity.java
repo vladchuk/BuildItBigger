@@ -9,6 +9,7 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -25,15 +26,14 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private JokeTeller jokeTeller;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        jokeTeller = new JokeTeller();
+        spinner = findViewById(R.id.progress_ind);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,18 +58,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-//        String joke = jokeTeller.tellJoke();
-//        Intent intent = JokeActivity.newIntent(this, joke);
-//        startActivity(intent);
+        spinner.setVisibility(View.VISIBLE);
         new JokeAsyncTask(this).execute();
     }
 
     static class JokeAsyncTask extends AsyncTask<Void, Void, String> {
         private static MyApi myApiService = null;
-        private Context context;
+        private MainActivity context;
 
-        public JokeAsyncTask(Context ctx) {
-            context = ctx;
+        public JokeAsyncTask(MainActivity ma) {
+            context = ma;
         }
 
         @Override
@@ -92,14 +90,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             try {
+//                Thread.sleep(5000);
                 return myApiService.tellJoke().execute().getData();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 return e.getMessage();
             }
         }
 
         @Override
         protected void onPostExecute(String joke) {
+            context.spinner.setVisibility(View.INVISIBLE);
             Intent intent = JokeActivity.newIntent(context, joke);
             context.startActivity(intent);
         }

@@ -5,14 +5,6 @@
                 android:padding="16dp"
                 tools:context=".JokeActivity">
 
-    <!--<TextView-->
-        <!--android:id="@+id/label_joke"-->
-        <!--android:textSize="18dp"-->
-        <!--android:paddingBottom="16dp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/joke_label"/>-->
-
     <TextView
         android:textSize="14dp"
         android:id="@+id/text_joke"
