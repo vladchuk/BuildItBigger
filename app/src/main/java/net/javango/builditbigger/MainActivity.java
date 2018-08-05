@@ -1,16 +1,13 @@
 package net.javango.builditbigger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -19,7 +16,6 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import net.javango.builditbigger.backend.myApi.MyApi;
 import net.javango.jokeactivity.JokeActivity;
-import net.javango.jokelib.JokeTeller;
 
 import java.io.IOException;
 
@@ -59,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         spinner.setVisibility(View.VISIBLE);
-        new JokeAsyncTask(this).execute();
+        new JokeFetchTask(this).execute();
     }
 
-    static class JokeAsyncTask extends AsyncTask<Void, Void, String> {
+    static class JokeFetchTask extends AsyncTask<Void, Void, String> {
         private static MyApi myApiService = null;
         private MainActivity context;
 
-        public JokeAsyncTask(MainActivity ma) {
+        public JokeFetchTask(MainActivity ma) {
             context = ma;
         }
 

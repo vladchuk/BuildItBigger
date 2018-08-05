@@ -11,8 +11,9 @@ import static org.junit.Assert.*;
 public class JokeTaskTestAndroid {
     @Test
     public void retrieveJoke() {
-        MainActivity.JokeAsyncTask task = new MainActivity.JokeAsyncTask(null);
+        MainActivity.JokeFetchTask task = new MainActivity.JokeFetchTask(null);
         String joke = task.doInBackground();
         assertNotNull(joke);
+        assertFalse("Task timed out!", joke.contains("timed out"));
     }
 }
